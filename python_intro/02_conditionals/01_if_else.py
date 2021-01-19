@@ -1,9 +1,6 @@
-
-age_input = input()
 age_limit = 18
 
-# Typecasting the input to Integer
-age = int(age_input)
+age = 5
 
 # Conditionals: if/else
 if age < age_limit:

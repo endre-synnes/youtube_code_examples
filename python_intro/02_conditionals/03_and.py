@@ -1,9 +1,7 @@
-age_input = input()
 min_age = 10
 max_age = 18
 
-# Typecasting the input to Integer
-age = int(age_input)
+age = 8
 
 # And - to old
 if age <= max_age and age >= min_age:
