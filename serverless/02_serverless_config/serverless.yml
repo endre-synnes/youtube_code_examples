@@ -1,0 +1,44 @@
+service: my-first-serverless-application
+
+plugins:
+  - serverless-pseudo-parameters
+  - serverless-python-requirements
+  - serverless-domain-manager
+
+provider:
+  name: aws
+  runtime: python3.8
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'eu-central-1'}
+
+  environment:
+    REGION: ${self:provider.region}
+  params:
+    dev:
+      domainName: my-dev.domain.com
+    prod:
+      domainName: my.domain.com
+
+custom:
+  mySQSQueueName: ${ssm.${self:provider.region}:my-queue-${self:provider.stage}}
+  
+  customDomain:
+    domainName: ${self:provider.params.${self:provider.stage}.domainName}
+    basePath: ''
+    certificateArn: ${ssm.${self:provider.region}:my-certificate-arn-${self:provider.stage}}
+    createRoute53Record: true
+    securityPolicy: tls_1_2
+
+  pythonRequirements:
+    dockerizePip: false
+
+package:
+  individually: false
+  include:
+    - 'functions/**'
+  exclude:
+    - '**'
+
+functions: ${file(serverless/functions.yml)}
+
+resources: ${file(resources/resources.yml)}
