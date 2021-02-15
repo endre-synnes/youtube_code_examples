@@ -1,18 +1,20 @@
-min_age = 10
-max_age = 18
+max_age_student = 36
+title = "student"
 
-age = 8
+my_age = 20
+my_title = "student"
 
-# And - to old
-if age <= max_age and age >= min_age:
-    print("You are within the age group")
-elif age > max_age:
-    print("You are to old 👴")
+# ex 1
+if my_age < max_age_student and my_title == title:
+    print("You can purchase student tickets!")
 else:
-    print("You are to yong 👶")
+    print("You have to a student and youger than 36 years old to get cheap tickets.")
 
-""" Simplified version
-# And - to old
-if max_age > age > min_age:
-    print("You are within the age group")
-"""
+
+# ex 2
+if my_age < max_age_student and my_title == title:
+    print("You can purchase student tickets!")
+elif my_title == title:
+    print("Students your age does not get cheap tickets :(")
+else:
+    print("You have to a student to get cheap tickets.")
