@@ -1,20 +1,19 @@
 import boto3
-import os
 
-table_name = os.environ['TABLE_NAME']
-region = os.environ['REGION']
+TABLE_NAME = "birds"
+REGION = "eu-central-1"
 
 
 def lambda_handler(event, context):
-    print(f"Event: {event}")
-    write_to_db(event["data"])
 
-
-def write_to_db(data):
-    dynamodb = boto3.resource('dynamodb', region_name=region)
-    table = dynamodb.Table(table_name)
+    dynamodb = boto3.resource('dynamodb', region_name=REGION)
+    table = dynamodb.Table(TABLE_NAME)
 
     table.put_item(
-        TableName=table_name,
-        Item=data
+        Item=event
     )
+
+
+    # Extra
+    response = table.get_item(Key={'id': event["id"]})
+    return response["Item"]
