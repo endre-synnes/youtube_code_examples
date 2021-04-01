@@ -1,7 +1,5 @@
 birds = ["eagle", "owl", "penguin", "albatross", "falcon"]
 
-currentGuess = ""
-
 print("Which of the following birds can't fly:")
 print(birds)
 
@@ -20,7 +18,7 @@ while input() != "penguin":
   print("wrong, guess again:")
 
   
-  if tries >= 5:
+  if tries >= 3:
     print("You have tried to many times, game over!")
     break
 
