@@ -1,0 +1,24 @@
+[
+  {
+    "id": "53cc4d34-155e-4283-a16f-0a0d2a28dde0",
+    "canFly": true,
+    "name": "eagle",
+    "colors": [
+      "brown",
+      "white",
+      "yellow"
+    ]
+  },
+  {
+    "id": "079b42b8-a1ab-11eb-bcbc-0242ac130002",
+    "canFly": true,
+    "name": "parrot",
+    "colors": [
+      "red",
+      "yellow",
+      "green",
+      "blue",
+      "white"
+    ]
+  }
+]
