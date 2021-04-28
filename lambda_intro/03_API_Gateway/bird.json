@@ -1,0 +1,10 @@
+{ 
+  "id": "453gdgr43-155e-4283-a16f-546435gdgd5",
+  "canFly": false,
+  "name": "penguin",
+  "colors": [
+    "black",
+    "white",
+    "orange"
+  ]
+}
