@@ -6,7 +6,6 @@ In this repository you will find the code used in my Python and AWS course.
 - python_intro
 - lambda_intro
 - serverless
-- aws
     
 
 ### python_intro
@@ -25,15 +24,11 @@ This module is aimed at developers how know the basics of writing python applica
 and want to learn how create lambda functions using python.
 
 We will make use of the AWS Console to write and publish our lambda functions. 
-We will also make use of some AWS Services such as DynamoDB and SQS in our lambda functions.
+We will also make use of some AWS Services such as DynamoDB and SQS in our lambda functions, as well as connecting lambda functions to API gateways etc.
 
 ### serverless
-Now we will learn how to create infrastructure as code (IaC) using Serverless. 
+Now we will learn how to create infrastructure as code (IaC) using the [Serverless framework](https://www.serverless.com/). 
 We will also learn how to deploy lambda fucntions using Serverless.
 
 ...
 
-### aws
-...
-- API Gateway
-- AWS Cognito
