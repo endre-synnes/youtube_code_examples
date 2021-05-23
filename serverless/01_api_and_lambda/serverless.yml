@@ -1,0 +1,18 @@
+service: hello-world
+
+provider:
+  name: aws
+  runtime: python3.8
+  region: ${opt:region, 'eu-central-1'}
+
+  environment:
+    REGION: ${self:provider.region}
+
+functions:
+  helloWorld:
+    handler: functions/create_bird/create_bird.lambda_handler
+    events:
+      - http:
+          path: /birds
+          method: post
+          cors: true
