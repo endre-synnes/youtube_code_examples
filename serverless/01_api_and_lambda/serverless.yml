@@ -1,18 +1,26 @@
-service: hello-world
+service: serverless-birds-v1
 
 provider:
   name: aws
   runtime: python3.8
-  region: ${opt:region, 'eu-central-1'}
+  region: eu-central-1
+  lambdaHashingVersion: 20201221
 
   environment:
     REGION: ${self:provider.region}
 
 functions:
-  helloWorld:
-    handler: functions/create_bird/create_bird.lambda_handler
+  createBird:
+    handler: functions/create_bird.lambda_handler
     events:
       - http:
           path: /birds
           method: post
+          cors: true
+  getBird:
+    handler: functions/get_bird.lambda_handler
+    events:
+      - http:
+          path: /birds/{id}
+          method: get
           cors: true
