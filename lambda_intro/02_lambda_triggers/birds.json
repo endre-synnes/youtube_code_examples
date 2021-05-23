@@ -20,5 +20,15 @@
       "blue",
       "white"
     ]
+  },
+  {
+    "id": "fgji85sd-a1ab-11eb-bcbc-gdrgs4t3t34",
+    "canFly": true,
+    "name": "albatross",
+    "colors": [
+      "yellow",
+      "black",
+      "white"
+    ]
   }
 ]
