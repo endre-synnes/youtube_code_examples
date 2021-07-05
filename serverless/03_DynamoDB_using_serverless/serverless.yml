@@ -1,0 +1,20 @@
+service: serverless-birds-v3
+
+plugins:
+  - serverless-iam-roles-per-function
+provider:
+  name: aws
+  runtime: python3.8
+  region: eu-central-1
+  lambdaHashingVersion: 20201221
+
+
+  environment:
+    TABLE_NAME: ${self:custom.tableName}
+
+custom:
+  tableName: birds-table-v3
+
+functions: ${file(serverless/functions.yml)}
+
+resources: ${file(resources/resources.yml)}

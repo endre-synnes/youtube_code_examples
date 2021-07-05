@@ -1,0 +1,11 @@
+handler: functions/create_bird.lambda_handler
+events:
+  - http:
+      path: /birds
+      method: post
+iamRoleStatements:
+  - Effect: Allow
+    Action:
+      - "dynamodb:PutItem"
+    Resource:
+      - "arn:aws:dynamodb:eu-central-1:397824038776:table/${self:custom.tableName}"

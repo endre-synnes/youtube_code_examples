@@ -1,0 +1,11 @@
+handler: functions/get_bird.lambda_handler
+events:
+  - http:
+      path: /birds/{id}
+      method: get
+iamRoleStatements:
+  - Effect: Allow
+    Action:
+      - "dynamodb:GetItem"
+    Resource:
+      - "arn:aws:dynamodb:eu-central-1:397824038776:table/${self:custom.tableName}"
