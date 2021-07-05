@@ -15,6 +15,9 @@ provider:
 custom:
   tableName: birds-table-v3
 
-functions: ${file(serverless/functions.yml)}
+functions:
+  createBird: ${file(serverless/createBird.yml)}
+  getBird: ${file(serverless/getBird.yml)}
 
-resources: ${file(resources/resources.yml)}
+resources:
+  - ${file(resources/birdsTable.yml)}

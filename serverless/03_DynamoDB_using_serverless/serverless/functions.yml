@@ -1,2 +1,0 @@
-createBird: ${file(serverless/createBird.yml)}
-getBird: ${file(serverless/getBird.yml)}
