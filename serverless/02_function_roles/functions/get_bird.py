@@ -1,26 +1,14 @@
 import json
-
-BIRDS = [
-  {
-    "id": "123abc",
-    "name": "eagle"
-  },
-  {
-    "id": "321def",
-    "name": "penguin"
-  }
-]
+import boto3
 
 def lambda_handler(event, context):
   
-  bird_id = event["pathParameters"]["id"]
-
-  for bird in BIRDS:
-    if bird["id"] == bird_id:
-      return {
-          "statusCode": 200,
-          "body": json.dumps(bird)
-      }
+  dynamodb = boto3.resource('dynamodb')
+  table = dynamodb.Table('awesome-birds')
   
+  response = table.get_item(Key={'id': event["pathParameters"]["id"]})
 
-  return {"statusCode": 404}
+  return {
+    'statusCode': 200,
+    'body': json.dumps(response['Item'])
+  }

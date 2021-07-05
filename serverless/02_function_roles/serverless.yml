@@ -2,6 +2,7 @@ service: serverless-birds-v2
 
 plugins:
   - serverless-iam-roles-per-function
+
 provider:
   name: aws
   runtime: python3.8
@@ -15,9 +16,23 @@ functions:
       - http:
           path: /birds
           method: post
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - "dynamodb:CreateItem"
+        Resource:
+          - "arn:aws:dynamodb:eu-central-1:<ACCOUNT_ID>:table/<TABLE_NAME>"
+
   getBird:
     handler: functions/get_bird.lambda_handler
     events:
       - http:
           path: /birds/{id}
           method: get
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - "dynamodb:GetItem"
+        Resource:
+          - "arn:aws:dynamodb:eu-central-1:<ACCOUNT_ID>:table/<TABLE_NAME>"
+
