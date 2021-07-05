@@ -19,7 +19,7 @@ functions:
     iamRoleStatements:
       - Effect: Allow
         Action:
-          - "dynamodb:CreateItem"
+          - "dynamodb:PutItem"
         Resource:
           - "arn:aws:dynamodb:eu-central-1:<ACCOUNT_ID>:table/<TABLE_NAME>"
 
