@@ -1,10 +1,13 @@
 # Serverless
 
-In this module we will learn the basics of [the serverless framework](https://www.serverless.com), and why it can be something to consider for you next world changing application!
+In this module we will learn the basics of [the serverless framework](https://www.serverless.com), and why it can be 
+something to consider for you next world changing application!
 
 ### What is the serverless framework?
 
-> The Serverless Framework is a free and open-source web framework written using Node.js. Serverless is the first framework developed for building applications on AWS Lambda, a serverless computing platform provided by Amazon as a part of Amazon Web Services. [1]
+> The Serverless Framework is a free and open-source web framework written using Node.js. Serverless is the first 
+> framework developed for building applications on AWS Lambda, a serverless computing platform provided by Amazon as a 
+> part of Amazon Web Services. [1]
 
 The serverless framework can be used to deploy applications on cloud providers such as AWS, Azure, GCP, etc.
 
