@@ -2,7 +2,7 @@ Resources:
   birdsTable:
     Type: AWS::DynamoDB::Table
     Properties:
-      TableName: ${self:custom.tableName}
+      TableName: TABLE_NAME
       AttributeDefinitions:
         - AttributeName: id
           AttributeType: S

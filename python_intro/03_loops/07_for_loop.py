@@ -7,4 +7,4 @@ for i in range(5):
   print(f"This is index nr: {i}")
 
 for i in range(0, len(birds)):
-  print("Range of birds")
+  print(birds[i])

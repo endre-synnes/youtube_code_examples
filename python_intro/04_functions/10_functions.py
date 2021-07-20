@@ -1,6 +1,8 @@
+birds = ["eagle", "owl", "penguin", "albatross", "falcon"]
 
-def my_function():
-  print("Hello from function")
+def print_birds():
+  for bird in birds:
+    print(f"hello {bird}")
 
 
-my_function()
+print_birds()
