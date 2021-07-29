@@ -1,18 +1,31 @@
-
-def hello(name):
-  return f"Hello {name}"
-
-
-response = hello("Eagle")
-print(response)
-print(type(response))
-
-
 penguin = {
   "id" : "1001",
   "name": "Penguin",
   "canFly": False
 }
+
+birds = [
+  {
+  "id" : "1001",
+  "name": "Penguin",
+  "canFly": False
+  },
+  {
+    "id": "4004",
+    "canFly": True,
+    "name": "eagle"
+  },
+  {
+    "id": "3003",
+    "canFly": True,
+    "name": ""
+  },
+  {
+    "id": "2002",
+    "canFly": None,
+    "name": "albatross"
+  }
+]
 
 
 def valid_attribute(bird_attribute):
@@ -27,9 +40,13 @@ def validate_bird(bird):
   if (valid_attribute(bird["id"]) & 
       valid_attribute(bird["name"]) & 
       valid_attribute(bird["canFly"])):
-    return "Valid bird :D"
+    return f"valid bird object: {bird}"
   
-  return "Invalid bird"
+  return f"invalid bird object: {bird}"
   
 response = validate_bird(penguin)
 print(response)
+
+for bird in birds:
+  response = validate_bird(bird)
+  print(response)
