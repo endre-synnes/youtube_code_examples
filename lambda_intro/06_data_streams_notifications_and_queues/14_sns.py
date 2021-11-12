@@ -11,7 +11,7 @@ def lambda_handler(event, context):
     TopicArn='string',
     Message=json.dumps({
       "event": "newBird",
-      "birdName": event["birdName"]
+      "birdName": event["name"]
     })
   )
   
@@ -23,7 +23,7 @@ def lambda_handler(event, context):
 
 def write_to_db(data):
   dynamodb = boto3.resource('dynamodb', region_name="eu-central-1")
-  table = dynamodb.Table("birds")
+  table = dynamodb.Table("awesome-birds")
 
   table.put_item(
       Item=data
