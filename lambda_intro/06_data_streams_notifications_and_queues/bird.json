@@ -1,0 +1,11 @@
+{ 
+  "id": "b2bfe236-c738-4916-9015-ce47d49d666d",
+  "canFly": true,
+  "name": "blue jay",
+  "colors": [
+    "black",
+    "white",
+    "blur",
+    "grey"
+  ]
+}
