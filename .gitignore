@@ -3,3 +3,8 @@
 *.serverless
 
 *node_modules/
+
+# Terraform
+*.terraform/
+*.lock.hcl
+*.tfstate
