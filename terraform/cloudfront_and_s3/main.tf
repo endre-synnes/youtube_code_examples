@@ -1,12 +1,12 @@
 locals {
   s3_bucket_name = ""
-  domain = ""
+  domain         = ""
   hosted_zone_id = ""
-  cert_arn = ""
+  cert_arn       = ""
 }
 
 resource "aws_s3_bucket" "main" {
-  bucket   = local.s3_bucket_name
+  bucket = local.s3_bucket_name
 }
 
 
@@ -73,8 +73,8 @@ data "aws_iam_policy_document" "cloudfront_oac_access" {
 }
 
 resource "aws_s3_bucket_policy" "main" {
-  bucket   = aws_s3_bucket.main.id
-  policy   = data.aws_iam_policy_document.cloudfront_oac_access.json
+  bucket = aws_s3_bucket.main.id
+  policy = data.aws_iam_policy_document.cloudfront_oac_access.json
 }
 
 resource "aws_route53_record" "main" {
