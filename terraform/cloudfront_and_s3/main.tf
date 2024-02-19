@@ -1,18 +1,17 @@
-variable "s3_bucket_name" {}
-variable "domain" {}
-variable "hosted_zone_id" {}
+locals {
+  s3_bucket_name = ""
+  domain = ""
+  hosted_zone_id = ""
+  cert_arn = ""
+}
 
 resource "aws_s3_bucket" "main" {
-  bucket   = var.s3_bucket_name
+  bucket   = local.s3_bucket_name
 }
 
-data "aws_acm_certificate" "main" {
-  provider = aws.us
-  domain = var.domain
-}
 
 resource "aws_cloudfront_distribution" "main" {
-  aliases             = [var.domain]
+  aliases             = [local.domain]
   default_root_object = "index.html"
   enabled             = true
   is_ipv6_enabled     = true
@@ -27,8 +26,6 @@ resource "aws_cloudfront_distribution" "main" {
   }
 
   origin {
-    connection_attempts      = 3
-    connection_timeout       = 10
     domain_name              = aws_s3_bucket.main.bucket_regional_domain_name
     origin_access_control_id = aws_cloudfront_origin_access_control.main.id
     origin_id                = aws_s3_bucket.main.bucket
@@ -36,18 +33,15 @@ resource "aws_cloudfront_distribution" "main" {
 
   restrictions {
     geo_restriction {
-      locations        = []
       restriction_type = "none"
     }
   }
 
   viewer_certificate {
-    acm_certificate_arn      = data.aws_acm_certificate.main.arn
+    acm_certificate_arn      = local.cert_arn
     minimum_protocol_version = "TLSv1.2_2021"
     ssl_support_method       = "sni-only"
   }
-
-  provider = aws.us
 }
 
 resource "aws_cloudfront_origin_access_control" "main" {
@@ -55,13 +49,6 @@ resource "aws_cloudfront_origin_access_control" "main" {
   origin_access_control_origin_type = "s3"
   signing_behavior                  = "always"
   signing_protocol                  = "sigv4"
-
-  provider = aws.us
-}
-
-resource "aws_s3_bucket_policy" "main" {
-  bucket   = aws_s3_bucket.main.id
-  policy   = data.aws_iam_policy_document.cloudfront_oac_access.json
 }
 
 data "aws_iam_policy_document" "cloudfront_oac_access" {
@@ -85,10 +72,16 @@ data "aws_iam_policy_document" "cloudfront_oac_access" {
   }
 }
 
+resource "aws_s3_bucket_policy" "main" {
+  bucket   = aws_s3_bucket.main.id
+  policy   = data.aws_iam_policy_document.cloudfront_oac_access.json
+}
+
 resource "aws_route53_record" "main" {
-  name    = var.domain
+  name    = local.domain
   type    = "A"
-  zone_id = var.hosted_zone_id
+  zone_id = local.hosted_zone_id
+
 
   alias {
     evaluate_target_health = false
